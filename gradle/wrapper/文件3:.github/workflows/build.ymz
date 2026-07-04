@@ -1,0 +1,73 @@
+name: Build APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Create Android project structure
+        run: |
+          mkdir -p app/src/main/java/com/wechat/deepseek
+          mkdir -p app/src/main/res/layout
+          mkdir -p app/src/main/res/drawable
+          mkdir -p app/src/main/res/anim
+          mkdir -p app/src/main/res/values
+          mkdir -p app/src/main/res/xml
+
+          # Move Java files
+          mv MainActivity.java app/src/main/java/com/wechat/deepseek/
+          mv WechatAccessibilityService.java app/src/main/java/com/wechat/deepseek/
+          mv NotificationListener.java app/src/main/java/com/wechat/deepseek/
+          mv KeepAliveService.java app/src/main/java/com/wechat/deepseek/
+          mv DeepSeekAPI.java app/src/main/java/com/wechat/deepseek/
+
+          # Move build.gradle (app-level, if separate from root)
+          cp build.gradle app/build.gradle 2>/dev/null || true
+
+          # Move resource files
+          mv activity_main.xml app/src/main/res/layout/
+          mv btn_primary_bg.xml app/src/main/res/drawable/
+          mv btn_outline_bg.xml app/src/main/res/drawable/
+          mv icon_header_bg.xml app/src/main/res/drawable/
+          mv info_card_bg.xml app/src/main/res/drawable/
+          mv input_bg.xml app/src/main/res/drawable/
+          mv status_bg.xml app/src/main/res/drawable/
+          mv status_dot_running.xml app/src/main/res/drawable/
+          mv status_dot_stopped.xml app/src/main/res/drawable/
+          mv pulse.xml app/src/main/res/anim/
+          mv pulse_scale.xml app/src/main/res/anim/
+          mv themes.xml app/src/main/res/values/
+          mv colors.xml app/src/main/res/values/
+          mv strings.xml app/src/main/res/values/
+          mv accessibility_service_config.xml app/src/main/res/xml/
+
+          # Ensure app/build.gradle is correct
+          ls -la app/src/main/java/com/wechat/deepseek/
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Grant gradlew permission
+        run: chmod +x gradlew
+
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: WechatDeepSeek-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
