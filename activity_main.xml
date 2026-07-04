@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSurface"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="40dp">
+
+        <!-- ========== 头部品牌区域 ========== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingTop="32dp"
+            android:paddingBottom="8dp">
+
+            <!-- Logo 圆形图标 -->
+            <ImageView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="@drawable/icon_header_bg"
+                android:src="@android:drawable/ic_dialog_info"
+                android:padding="16dp"
+                android:contentDescription="App Logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WechatDeepSeek"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorOnSurface"
+                android:gravity="center"
+                android:paddingTop="16dp"
+                android:letterSpacing="0.02" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="微信消息 · 智能回复引擎"
+                android:textSize="13sp"
+                android:textColor="@color/colorSubtext"
+                android:gravity="center"
+                android:paddingTop="4dp" />
+        </LinearLayout>
+
+        <!-- ========== 分割装饰线 ========== -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/icon_header_bg" />
+
+        <!-- ========== 状态卡片 ========== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/status_bg"
+            android:elevation="2dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:padding="18dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/iv_status_dot"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/status_dot_stopped"
+                    android:contentDescription="Status Indicator" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  服务状态"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorOnSurface" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status_stopped"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/statusStopped" />
+        </LinearLayout>
+
+        <!-- ========== API Key 配置卡片 ========== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/status_bg"
+            android:elevation="2dp"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🔑 DeepSeek API Key"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorOnSurface"
+                android:paddingBottom="12dp" />
+
+            <EditText
+                android:id="@+id/et_api_key"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/api_key_hint"
+                android:inputType="text"
+                android:singleLine="true"
+                android:padding="14dp"
+                android:background="@drawable/input_bg"
+                android:textSize="14sp"
+                android:textColor="@color/colorOnSurface"
+                android:textColorHint="@color/colorSubtext"
+                android:layout_marginBottom="14dp" />
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="@string/save"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#6366F1"
+                android:background="@drawable/btn_outline_bg"
+                android:elevation="0dp"
+                android:stateListAnimator="@null"
+                app:cornerRadius="16dp" />
+        </LinearLayout>
+
+        <!-- ========== 主操作按钮 ========== -->
+        <Button
+            android:id="@+id/btn_toggle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/start"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorOnPrimary"
+            android:background="@drawable/btn_primary_bg"
+            android:elevation="4dp"
+            android:stateListAnimator="@null"
+            android:layout_marginBottom="20dp"
+            app:cornerRadius="18dp" />
+
+        <!-- ========== 使用说明卡片 ========== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/info_card_bg"
+            android:elevation="1dp"
+            android:padding="20dp"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📋 "
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="使用说明"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="#9A3412" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1. 填入 DeepSeek API Key 并保存"
+                    android:textSize="13sp"
+                    android:textColor="#92400E"
+                    android:paddingBottom="6dp"
+                    android:lineSpacingExtra="2dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2. 点击启动，按提示开启无障碍服务和通知使用权"
+                    android:textSize="13sp"
+                    android:textColor="#92400E"
+                    android:paddingBottom="6dp"
+                    android:lineSpacingExtra="2dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3. 确保微信在前台或后台运行"
+                    android:textSize="13sp"
+                    android:textColor="#92400E"
+                    android:paddingBottom="6dp"
+                    android:lineSpacingExtra="2dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="4. 有人给你发微信时，App 会自动用 DeepSeek 回复"
+                    android:textSize="13sp"
+                    android:textColor="#92400E"
+                    android:paddingBottom="12dp"
+                    android:lineSpacingExtra="2dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="⚠️ 请用小号测试，存在封号风险"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="#DC2626"
+                    android:paddingBottom="4dp"
+                    android:lineSpacingExtra="2dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="⚠️ 微信版本更新可能导致控件匹配失效"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="#DC2626"
+                    android:lineSpacingExtra="2dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ========== 底部品牌文字 ========== -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Powered by DeepSeek · 理性 | 耐心"
+            android:textSize="11sp"
+            android:textColor="@color/colorSubtext"
+            android:gravity="center"
+            android:paddingTop="4dp"
+            android:letterSpacing="0.04" />
+
+    </LinearLayout>
+</ScrollView>

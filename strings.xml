@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">微信DeepSeek助手</string>
+    <string name="accessibility_desc">用于自动读取微信消息并调用DeepSeek回复</string>
+    <string name="status_running">运行中</string>
+    <string name="status_stopped">已停止</string>
+    <string name="api_key_hint">请输入DeepSeek API Key</string>
+    <string name="save">保存</string>
+    <string name="start">启动</string>
+    <string name="stop">停止</string>
+</resources>
